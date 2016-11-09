@@ -14,7 +14,8 @@ def options():
 
 def getInput():
     '''
-    gets the input values for all the different doors, switches, handles, Ge    ar positions
+    gets the input values for all the different doors, switches, handles, 
+    and Gear positions
     '''
     value = {}
     value['left dash']=getLD()
@@ -27,6 +28,38 @@ def getInput():
     value['right outer']=getRO()
     value['gear status']=getGS()
     return value
+
+
+def getInputOverload(ld,rd,cl,ml,li,lo,ri,ro,gs):
+    '''
+    overloaded method for getInput that allows all values to be set at the 
+    same time
+    '''
+    value = {} 
+    value['left dash']=ld
+    value['right dash']=rd
+    value['child lock']=cl
+    value['master unlock']=ml
+    value['left inner']=li
+    value['left outer']=lo
+    value['right inner']=ri
+    value['right outer']=ro
+    value['gear status']=gs
+    return value
+
+
+def checkDoors(doors):
+    '''
+    checks to see if the doors of a vehicle can open depending on switches
+    Args:
+        doors is a dict storing switch values
+    '''
+    if doors['gear status'] == 'P' and doors['master unlock'] == 1:
+        if doors['child lock'] == 0:
+            pass
+   
+
+
 
 def getLD():
     '''
@@ -67,7 +100,7 @@ def getCL():
 
 def getML():
     '''
-    gets master lock switch with error handling
+    gets master unlock switch with error handling
     '''
     while True:
         try:
