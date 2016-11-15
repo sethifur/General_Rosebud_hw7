@@ -21,7 +21,7 @@ def getInput():
     value['left dash']=getLD()
     value['right dash']=getRD()
     value['child lock']=getCL()
-    value['master lock']=getML()
+    value['master unlock']=getML()
     value['left inner']=getLI()
     value['left outer']=getLO()
     value['right inner']=getRI()
@@ -54,10 +54,20 @@ def checkDoors(doors):
     Args:
         doors is a dict storing switch values
     '''
-    if doors['gear status'] == 'P' and doors['master unlock'] == 1:
-        if doors['child lock'] == 0:
-            pass
-   
+    if doors[4] == 0 and doors[5] == 1 and doors[9] == 'P':
+        print('Both doors open')
+    elif doors[9] != 'P':
+        print('Both doors stay closed')
+    elif doors[4] == 0:
+        if doors[2] == 1:
+            print('left door opens')
+        elif doors[3] == 1:
+            print('right door opens')
+        else:
+            print('No doors open')
+    else:
+        print('No doors open')
+        
 
 
 
@@ -104,7 +114,7 @@ def getML():
     '''
     while True:
         try:
-            ML = int(input('Master lock switch (0 or 1):'))
+            ML = int(input('Master unlock switch (0 or 1):'))
             if ML == 0 or ML == 1:
                 return ML
         except (TypeError,ValueError):
@@ -169,7 +179,7 @@ def getGS():
     while True:
         GS = input('Gear shift position (P, N, D, 1, 2, 3, or R):')
         GS = GS.capitalize()
-        if GS == 'P' or GS == 'N' or GS == 'D' or GS == '1' or GS == '2' or         GS == '3' or GS == 'R':
+        if GS == 'P' or GS == 'N' or GS == 'D' or GS == '1' or GS == '2' or GS == '3' or GS == 'R':
             return GS
     
     
@@ -179,11 +189,10 @@ def getGS():
 # Main Function
 def main():
     options()
-    print(getInput())
+    checkDoors(getInput())
     return
 
 if __name__ == '__main__':
     #Call Main
     main()
-    
     exit(0)
