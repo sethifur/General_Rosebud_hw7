@@ -18,15 +18,15 @@ def getInput():
     and Gear positions
     '''
     value = {}
-    value['left dash']=getLD()
-    value['right dash']=getRD()
-    value['child lock']=getCL()
-    value['master unlock']=getML()
-    value['left inner']=getLI()
-    value['left outer']=getLO()
-    value['right inner']=getRI()
-    value['right outer']=getRO()
-    value['gear status']=getGS()
+    value[1]=getLD()
+    value[2]=getRD()
+    value[3]=getCL()
+    value[4]=getML()
+    value[5]=getLI()
+    value[6]=getLO()
+    value[7]=getRI()
+    value[8]=getRO()
+    value[9]=getGS()
     return value
 
 
@@ -36,15 +36,15 @@ def getInputOverload(ld,rd,cl,ml,li,lo,ri,ro,gs):
     same time
     '''
     value = {} 
-    value['left dash']=ld
-    value['right dash']=rd
-    value['child lock']=cl
-    value['master unlock']=ml
-    value['left inner']=li
-    value['left outer']=lo
-    value['right inner']=ri
-    value['right outer']=ro
-    value['gear status']=gs
+    value[1]=ld
+    value[2]=rd
+    value[3]=cl
+    value[4]=ml
+    value[5]=li
+    value[6]=lo
+    value[7]=ri
+    value[8]=ro
+    value[9]=gs
     return value
 
 
@@ -52,9 +52,9 @@ def checkDoors(doors):
     '''
     checks to see if the doors of a vehicle can open depending on switches
     Args:
-        doors is a dict storing switch values
+        doors is a dict or list storing switch values
     '''
-    if doors[4] == 0 and doors[5] == 1 and doors[9] == 'P':
+    if doors[3] == 0 and doors[4] == 1 and doors[9] == 'P':
         print('Both doors open')
     elif doors[9] != 'P':
         print('Both doors stay closed')
@@ -64,9 +64,9 @@ def checkDoors(doors):
         elif doors[3] == 1:
             print('right door opens')
         else:
-            print('No doors open')
+            print('Both doors stay closed')
     else:
-        print('No doors open')
+        print('Both doors stay closed')
         
 
 
@@ -176,19 +176,20 @@ def getGS():
     '''
     gets the state of the gear position
     '''
-    while True:
-        GS = input('Gear shift position (P, N, D, 1, 2, 3, or R):')
-        GS = GS.capitalize()
-        if GS == 'P' or GS == 'N' or GS == 'D' or GS == '1' or GS == '2' or GS == '3' or GS == 'R':
-            return GS
-    
+    GS = input('Gear shift position (P, N, D, 1, 2, 3, or R):')
+    GS = GS.capitalize()
+    if GS == 'P' or GS == 'N' or GS == 'D' or GS == '1' or GS == '2' or GS == '3' or GS == 'R':
+        return GS
+    else:
+        print('Invalid Record: Both doors stay closed')
+        return
     
 
 
 
 # Main Function
 def main():
-    options()
+    #options()
     checkDoors(getInput())
     return
 

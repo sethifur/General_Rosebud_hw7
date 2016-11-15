@@ -18,15 +18,14 @@ def importData():
     for row in csvArray:
         arr.append(row)
     for row in range(1,6):
-        print('testing: ', arr[row][0])
-        rose.checkDoors(rose.getInputOverload(row)
+        print('Reading Record ', arr[row][0])
+        rose.checkDoors(rose.getInputOverload(row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9])
 
 
 
 # Main Function
 def main():
     importData()
-    return
 
 if __name__ == '__main__':
     #Call Main
