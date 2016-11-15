@@ -35,15 +35,24 @@ def getInputOverload(ld,rd,cl,ml,li,lo,ri,ro,gs):
     overloaded method for getInput that allows all values to be set at the 
     same time
     '''
-    value = {} 
+    value = {}
+    print('Left dashboard switch (0 or 1):',ld)
     value[1]=ld
+    print('Right dashboard switch (0 or 1):',rd)
     value[2]=rd
+    print('child lock switch (0 or 1):',cl)
     value[3]=cl
+    print('Master unlock switch (0 or 1):',ml)
     value[4]=ml
+    print('Left inner switch (0 or 1):',li)
     value[5]=li
+    print('Left outer switch (0 or 1):',lo)
     value[6]=lo
+    print('Right inner switch (0 or 1):',ri)
     value[7]=ri
+    print('Right outer switch (0 or 1):',ro)
     value[8]=ro
+    print('Gear shift position (P, N, D, 1, 2, 3, or R):',gs)
     value[9]=gs
     return value
 
@@ -181,8 +190,8 @@ def getGS():
     if GS == 'P' or GS == 'N' or GS == 'D' or GS == '1' or GS == '2' or GS == '3' or GS == 'R':
         return GS
     else:
-        print('Invalid Record: Both doors stay closed')
-        return
+        print('Invalid Record: ')
+        return GS
     
 
 
